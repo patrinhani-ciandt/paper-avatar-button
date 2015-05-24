@@ -29,16 +29,12 @@ Element providithat extends 'paper-button-base' for displaying a avatar 'à la m
         z-index: 0;
         border-radius: 50%;
         overflow: hidden;
-        height: {{size}};
-        width: {{size}};
       }
       img {
         border-radius: 50%;
-        height: {{size}};
-        width: {{size}};
       }
     </style>
-    <img src="{{src}}"></img>
+    <img id="img" src="{{src}}"></img>
     <paper-ripple ></paper-ripple>
   </template>
   <script>
@@ -66,7 +62,14 @@ Element providithat extends 'paper-button-base' for displaying a avatar 'à la m
       recenteringTouch: true,
 
       // constrain the ripple to a circle within the button.
-      fill: false
+      fill: false,
+
+      ready: function() {
+        this.style.height = this.size;
+        this.style.width = this.size;
+        this.$.img.style.height = this.size;
+        this.$.img.style.width = this.size;
+      }
     });
   </script>
 </polymer-element>
