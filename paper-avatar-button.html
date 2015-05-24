@@ -1,0 +1,72 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-button/paper-button-base.html">
+
+<!--
+Element providithat extends 'paper-button-base' for displaying a avatar 'à la material design'.
+
+##### Example
+
+    <paper-avatar-button></paper-avatar-button>
+
+@element paper-avatar-button
+@extends paper-button-base
+@blurb Element that extends 'paper-button-base' for displaying a avatar 'à la material design'.
+@status alpha
+@homepage http://BasicElements.github.io/paper-avatar-button
+-->
+<polymer-element name="paper-avatar-button" attributes="src size" extends="paper-button-base">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        position: relative;
+        outline: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        z-index: 0;
+        border-radius: 50%;
+        overflow: hidden;
+        height: {{size}};
+        width: {{size}};
+      }
+      img {
+        border-radius: 50%;
+        height: {{size}};
+        width: {{size}};
+      }
+    </style>
+    <img src="{{src}}"></img>
+    <paper-ripple ></paper-ripple>
+  </template>
+  <script>
+    Polymer({
+
+      /**
+       * The url to the image.
+       *
+       * @attribute src
+       * @type string
+       * @default ''
+       */
+      src: '',
+
+      /**
+       * For changing the height & width.
+       *
+       * @attribute size
+       * @type string
+       * @default 32px
+       */
+      size: '32px',
+
+      // always center the ripple.
+      recenteringTouch: true,
+
+      // constrain the ripple to a circle within the button.
+      fill: false
+    });
+  </script>
+</polymer-element>

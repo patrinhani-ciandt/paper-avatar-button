@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>paper-avatar-button</title>
+
+  <script src="../../webcomponentsjs/webcomponents.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../paper-avatar-button.html">
+
+</head>
+<body>
+
+  <paper-avatar-button id="fixture"></paper-avatar-button>
+
+  <script>
+    var myEl = document.getElementById('fixture');
+
+    suite('<paper-avatar-button>', function() {
+
+      test('defines the "src" attribute', function() {
+        assert.equal(myEl.src, '');
+      });
+
+      test('defines the "size" attribute', function() {
+        assert.equal(myEl.size, '32px');
+      });
+
+      test('defines the "recenteringTouch" property', function() {
+        assert.equal(myEl.recenteringTouch, true);
+      });
+
+      test('defines the "fill" property', function() {
+        assert.equal(myEl.fill, false);
+      });
+
+    });
+  </script>
+
+</body>
+</html>
