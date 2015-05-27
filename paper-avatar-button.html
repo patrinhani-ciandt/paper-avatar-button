@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-button/paper-button-base.html">
+<link rel="import" href="../paper-shadow/paper-shadow.html">
 
 <!--
 Element providithat extends 'paper-button-base' for displaying a avatar 'à la material design'.
@@ -14,7 +15,7 @@ Element providithat extends 'paper-button-base' for displaying a avatar 'à la m
 @status alpha
 @homepage http://BasicElements.github.io/paper-avatar-button
 -->
-<polymer-element name="paper-avatar-button" attributes="src size" extends="paper-button-base">
+<polymer-element name="paper-avatar-button" attributes="src size z" extends="paper-button-base">
   <template>
     <style>
       :host {
@@ -34,11 +35,24 @@ Element providithat extends 'paper-button-base' for displaying a avatar 'à la m
         border-radius: 50%;
       }
     </style>
+    <template if="{{raised}}">
+      <paper-shadow z="{{z}}" fit animated></paper-shadow>
+    </template>
     <img id="img" src="{{src}}"></img>
-    <paper-ripple ></paper-ripple>
+    <paper-ripple></paper-ripple>
   </template>
   <script>
     Polymer({
+      publish: {
+        /**
+         * If true, the button will be styled with a shadow.
+         *
+         * @attribute raised
+         * @type boolean
+         * @default false
+         */
+        raised: false
+      },
 
       /**
        * The url to the image.
