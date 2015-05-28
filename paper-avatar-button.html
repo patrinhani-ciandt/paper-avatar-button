@@ -38,7 +38,7 @@ Element providithat extends 'paper-button-base' for displaying a avatar 'à la m
     <template if="{{raised}}">
       <paper-shadow z="{{z}}" fit animated></paper-shadow>
     </template>
-    <img id="img" src="{{src}}"></img>
+    <img id="img"></img>
     <paper-ripple></paper-ripple>
   </template>
   <script>
@@ -59,9 +59,8 @@ Element providithat extends 'paper-button-base' for displaying a avatar 'à la m
        *
        * @attribute src
        * @type string
-       * @default ''
+       * @default
        */
-      src: '',
 
       /**
        * For changing the height & width.
@@ -83,6 +82,14 @@ Element providithat extends 'paper-button-base' for displaying a avatar 'à la m
         this.style.width = this.size;
         this.$.img.style.height = this.size;
         this.$.img.style.width = this.size;
+      },
+
+      srcChanged: function() {
+        if(this.src) {
+          this.$.img.src = this.src;
+        } else {
+          this.$.img.removeAttribute('src');
+        }
       }
     });
   </script>
