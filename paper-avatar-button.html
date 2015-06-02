@@ -19,7 +19,7 @@ Example:
     :host {
       display: inline-block;
       box-sizing: border-box;
-      border-radius: 50%;      
+      border-radius: 50%;
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
@@ -79,8 +79,20 @@ Example:
         reflectToAttribute: true,
         value: '32px',
         observer: 'setSize'
+      },
+
+      startElevated: {
+        type: Boolean,
+        reflectToAttribute: true,
+        value: false
       }
 
+    },
+
+    ready: function() {
+      if(this.startElevated) {
+        this._elevation = 1;
+      }
     },
 
     setSize: function(size) {
