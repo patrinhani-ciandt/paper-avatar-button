@@ -19,7 +19,12 @@ Example:
     :host {
       display: inline-block;
       box-sizing: border-box;
-      border-radius: 50%;
+      border-radius: 50%;      
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: pointer;
       outline: none;
     }
     :host([disabled]) {
