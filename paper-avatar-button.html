@@ -1,96 +1,88 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-button/paper-button-base.html">
-<link rel="import" href="../paper-shadow/paper-shadow.html">
+<link rel="import" href="../button-behaviors/button-behavior.html">
+<link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../paper-ripple/paper-ripple.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
 
 <!--
-Element providithat extends 'paper-button-base' for displaying a avatar 'à la material design'.
+An element providing a solution to no problem in particular.
 
-##### Example
+Example:
 
     <paper-avatar-button></paper-avatar-button>
 
-@element paper-avatar-button
-@extends paper-button-base
-@blurb Element that extends 'paper-button-base' for displaying a avatar 'à la material design'.
-@status alpha
-@homepage http://BasicElements.github.io/paper-avatar-button
+@demo
 -->
-<polymer-element name="paper-avatar-button" attributes="src size z" extends="paper-button-base">
+<dom-module id="paper-avatar-button">
+
+  <style>
+    :host {
+      display: inline-block;
+      box-sizing: border-box;
+      border-radius: 50%;
+      outline: none;
+    }
+    :host([disabled]) {
+      background-color: #888;
+      pointer-events: none;
+    }
+    :host([active]), :host([pressed]) {
+      background-color: #3367D6;
+      box-shadow: inset 0 3px 5px rgba(0,0,0,.2);
+    }
+    iron-icon {
+      width: 32px;
+      height: 32px;
+    }
+    iron-icon, iron-icon::shadow img, paper-material {
+      border-radius: 50%;
+    }
+  </style>
+
   <template>
-    <style>
-      :host {
-        display: inline-block;
-        position: relative;
-        outline: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        cursor: pointer;
-        z-index: 0;
-        border-radius: 50%;
-        overflow: hidden;
-      }
-      img {
-        border-radius: 50%;
-      }
-    </style>
-    <template if="{{raised}}">
-      <paper-shadow z="{{z}}" fit animated></paper-shadow>
-    </template>
-    <img id="img"></img>
-    <paper-ripple></paper-ripple>
+
+    <paper-material elevation="[[_elevation]]">
+      <iron-icon id="icon" src="{{avatar}}"></iron-icon>
+      <paper-ripple></paper-ripple>
+    </paper-material>
+
   </template>
-  <script>
-    Polymer({
-      publish: {
-        /**
-         * If true, the button will be styled with a shadow.
-         *
-         * @attribute raised
-         * @type boolean
-         * @default false
-         */
-        raised: false
-      },
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'paper-avatar-button',
+    behaviors: [Polymer.buttonBehavior],
+
+    properties: {
 
       /**
-       * The url to the image.
+       * The avatar to display.
        *
-       * @attribute src
-       * @type string
-       * @default
-       */
-
-      /**
-       * For changing the height & width.
        *
-       * @attribute size
-       * @type string
-       * @default 32px
        */
-      size: '32px',
-
-      // always center the ripple.
-      recenteringTouch: true,
-
-      // constrain the ripple to a circle within the button.
-      fill: false,
-
-      ready: function() {
-        this.style.height = this.size;
-        this.style.width = this.size;
-        this.$.img.style.height = this.size;
-        this.$.img.style.width = this.size;
+      avatar: {
+        type: String,
+        reflectToAttribute: true
       },
 
-      srcChanged: function() {
-        if(this.src) {
-          this.$.img.src = this.src;
-        } else {
-          this.$.img.removeAttribute('src');
-        }
+      size: {
+        type: String,
+        reflectToAttribute: true,
+        value: '32px',
+        observer: 'setSize'
       }
-    });
-  </script>
-</polymer-element>
+
+    },
+
+    setSize: function(size) {
+      this.$.icon.style.width = this.size;
+      this.$.icon.style.height = this.size;
+    }
+
+  });
+
+</script>

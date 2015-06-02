@@ -15,13 +15,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
+
+    <!-- Step 1: import the element to test -->
+    <link rel="import" href="../paper-avatar-button.html">
   </head>
   <body>
+
+    <!-- You can use the document as a place to set up your fixtures. -->
+    <paper-avatar-button avatar="https://i.imgur.com/WohrKf9.png"></paper-avatar-button>
+
     <script>
-      // Load and run all tests (.html, .js):
-      WCT.loadSuites([
-        'basic-test.html',
-      ]);
+      var myEl = document.querySelector('paper-avatar-button');
+
+      suite('<paper-avatar-button>', function() {
+
+        test('defines the "avatar" property', function() {
+          assert.equal(myEl.avatar, 'https://i.imgur.com/WohrKf9.png');
+        });
+
+        test('defines the "_elevation" property', function() {
+          assert.equal(myEl._elevation, 0);
+        });
+        
+        test('defines the "disabled" property', function() {
+          assert.equal(myEl.disabled, false);
+        });
+
+      });
     </script>
+
   </body>
 </html>
