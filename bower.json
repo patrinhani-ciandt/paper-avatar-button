@@ -20,8 +20,8 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.0.0",
-    "paper-material": "Polymer/paper-material#^1.0.0",
-    "paper-ripple": "Polymer/paper-ripple#^1.0.0",
+    "paper-material": "PolymerElements/paper-material#^1.0.0",
+    "paper-ripple": "PolymerElements/paper-ripple#^1.0.0",
     "button-behaviors": "BasicElements/button-behaviors#^1.1.0"
   },
   "devDependencies": {
